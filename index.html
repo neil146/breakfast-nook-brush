@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Breakfast Nook: brush pass</title>
+<style>
+  :root { --paper: #efe6d2; --ink: #1b1a2b; }
+  html, body { margin: 0; height: 100%; background: #26242c; color: #efe6d2; overflow: hidden;
+    font: 13px/1.4 "Segoe UI", system-ui, sans-serif; }
+  #stage { position: fixed; inset: 0; display: grid; place-items: center; }
+  #frame { position: relative; box-shadow: 0 10px 40px rgba(0,0,0,.45); }
+  #gl, #overlay { display: block; position: absolute; inset: 0; width: 100%; height: 100%; }
+  #overlay { pointer-events: none; }
+  #word { position: absolute; left: 0; top: 0; pointer-events: none; opacity: 0;
+    font: 700 84px/1 "Ink Free", "Segoe Print", "Marker Felt", "Comic Sans MS", cursive;
+    color: var(--ink); -webkit-text-stroke: 10px var(--paper); paint-order: stroke fill;
+    transform-origin: 0 100%; white-space: nowrap; letter-spacing: -1px; }
+  #status { position: fixed; left: 14px; top: 10px; opacity: .75; font-variant-numeric: tabular-nums; }
+  #status b { font-weight: 600; }
+  #loading { position: fixed; inset: 0; display: grid; place-items: center; background: #26242c; font-size: 15px; z-index: 5; }
+  .lil-gui { --width: 300px; }
+  #stage { bottom: 56px; }
+  #bar { position: fixed; left: 0; right: 0; bottom: 0; height: 56px; display: flex; align-items: center; gap: 14px;
+    padding: 0 18px; background: #1c1b22; border-top: 1px solid #3a3842; box-sizing: border-box; z-index: 3; }
+  #pp { width: 40px; height: 34px; border: 0; border-radius: 6px; background: #efe6d2; color: #1b1a2b; font-size: 14px; cursor: pointer; }
+  #pp:hover { background: #fff; }
+  #scrub { flex: 1; accent-color: #ff5a3c; height: 22px; cursor: pointer; }
+  #fnum { font-variant-numeric: tabular-nums; min-width: 74px; text-align: right; opacity: .85; }
+  #hint { opacity: .55; white-space: nowrap; }
+  @media (max-width: 900px) { #hint { display: none; } }
+</style>
+</head>
+<body>
+<div id="stage"><div id="frame"><canvas id="gl"></canvas><canvas id="overlay"></canvas><div id="word">contact</div></div></div>
+<div id="status"></div>
+<div id="bar"><button id="pp" title="Play / pause (Space)">▶</button><input id="scrub" type="range"><span id="fnum"></span>
+  <span id="hint">Space: play · ← →: step · drag the scene to look around, scroll to zoom, right-drag to pan</span></div>
+<div id="loading">Loading the nook…</div>
+<script type="module" src="./app.js"></script>
+</body>
+</html>
